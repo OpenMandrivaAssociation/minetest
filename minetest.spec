@@ -38,7 +38,9 @@ experience Minecraft.
 
 %prep
 %setup -q -a 1
+%if %{mdvver} <= 201100
 %patch0 -p1
+%endif
 
 %build
 %cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread -DENABLE_GETTEXT:BOOL=ON
