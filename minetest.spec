@@ -38,7 +38,7 @@ experience Minecraft.
 
 %prep
 %setup -q -a 1
-%if %{mdvver} <= 201100
+%if %{mdvver} > 201100
 %patch0 -p1
 %endif
 
