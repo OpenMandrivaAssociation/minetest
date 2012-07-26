@@ -10,6 +10,8 @@ URL:		http://celeron.55.lt/minetest/
 # Get from github and re-pack to get rid of ugly directory names
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}_game-%{gameversion}.tar.bz2
+# Needed to fix build against jthread 1.3.1
+Patch0:		minetest-0.4.1-jthread.patch
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -36,6 +38,7 @@ experience Minecraft.
 
 %prep
 %setup -q -a 1
+%patch0 -p1
 
 %build
 %cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread -DENABLE_GETTEXT:BOOL=ON
