@@ -1,23 +1,28 @@
+%define gameversion 0.4.0
+
 Name:		minetest
-Version:	0.3.1
+Version:	0.4.1
 Release:	%mkrel 1
 Summary:	An InfiniMiner/Minecraft inspired game
 Group:		Games/Other
 License:	GPLv2+
 URL:		http://celeron.55.lt/minetest/
+# Get from github and re-pack to get rid of ugly directory names
 Source0:	%{name}-%{version}.tar.bz2
-Source1:	%{name}.desktop
+Source1:	%{name}_game-%{gameversion}.tar.bz2
 BuildRequires:	cmake >= 2.6.0
-BuildRequires:	irrlicht-devel
 BuildRequires:	bzip2-devel
-BuildRequires:	zlib-devel
-BuildRequires:	libpng-devel
-BuildRequires:	jpeg-devel
-BuildRequires:	libx11-devel
-BuildRequires:	libjthread-devel
-BuildRequires:	sqlite3-devel
 BuildRequires:	gettext-devel
-BuildRequires:	desktop-file-utils
+BuildRequires:	irrlicht-devel
+BuildRequires:	jpeg-devel
+BuildRequires:	zlib-devel
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(jthread)
+BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(openal)
+BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	pkgconfig(vorbisfile)
+BuildRequires:	pkgconfig(x11)
 
 %description
 One of the first InfiniMiner/Minecraft(/whatever) inspired games (started
@@ -29,25 +34,19 @@ differ from Minecraft except for having a lot less features. Still, playing
 is quite fun already, especially for people who have not been able to
 experience Minecraft.
 
-Warning! For 0.3.1 the game still has no sound.
-
 %prep
-%setup -q
+%setup -q -a 1
 
 %build
-%cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread
+%cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread -DENABLE_GETTEXT:BOOL=ON
 %make
 
 %install
 rm -rf %{buildroot}
-cd build
-%makeinstall_std
-cd ..
+%makeinstall_std -C build
 
-mkdir -p %{buildroot}%{_iconsdir}/hicolor/scalable/apps
-cp %{name}-icon.svg %{buildroot}%{_iconsdir}/hicolor/scalable/apps
-
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications %{SOURCE1}
+mkdir -p %{buildroot}%{_datadir}/%{name}/games/%{name}_game
+cp -r %{name}_game-%{gameversion}/* %{buildroot}%{_datadir}/%{name}/games/%{name}_game
 
 %find_lang %{name}
 
@@ -56,9 +55,11 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %doc doc/*.txt
-%defattr(-,root,root,-)
 %{_bindir}/%{name}
 %{_bindir}/%{name}server
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
+%{_mandir}/man6/%{name}.6*
+%{_mandir}/man6/%{name}server.6*
+
