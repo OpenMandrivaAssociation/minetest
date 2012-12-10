@@ -1,3 +1,4 @@
+---
 sources:
-  "minetest-0.4.1.tar.bz2:"	77b600124c51edbe560ef13f9b99ca6299f4f6c8
-  "minetest_game-0.4.0.tar.bz2:"	dce5c0ac24b6f8e00e9501dfb81cfdcd81a2e44f
+  minetest-0.4.4.tar.bz2: f5c09175541ae881dc6795fe3596382f962f9396
+  minetest_game-0.4.4.tar.bz2: fbb4bddf74b8653cce058676cf16da6474abd0a2

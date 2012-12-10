@@ -1,8 +1,8 @@
-%define gameversion 0.4.0
+%define gameversion 0.4.4
 
 Name:		minetest
-Version:	0.4.1
-Release:	%mkrel 1
+Version:	0.4.4
+Release:	1
 Summary:	An InfiniMiner/Minecraft inspired game
 Group:		Games/Other
 License:	GPLv2+
@@ -11,7 +11,7 @@ URL:		http://celeron.55.lt/minetest/
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}_game-%{gameversion}.tar.bz2
 # Needed to fix build against jthread 1.3.1
-Patch0:		minetest-0.4.1-jthread.patch
+Patch0:		minetest-0.4.4-jthread.patch
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -38,25 +38,19 @@ experience Minecraft.
 
 %prep
 %setup -q -a 1
-%if %{mdvver} > 201100
 %patch0 -p1
-%endif
 
 %build
 %cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread -DENABLE_GETTEXT:BOOL=ON
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 mkdir -p %{buildroot}%{_datadir}/%{name}/games/%{name}_game
 cp -r %{name}_game-%{gameversion}/* %{buildroot}%{_datadir}/%{name}/games/%{name}_game
 
 %find_lang %{name}
-
-%clean
-rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %doc doc/*.txt
@@ -67,4 +61,5 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
+
 
