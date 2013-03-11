@@ -1,0 +1,12 @@
+diff -urN minetest-0.4.5/src/json/CMakeLists.txt minetest-0.4.5-patched/src/json/CMakeLists.txt
+--- minetest-0.4.5/src/json/CMakeLists.txt	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/json/CMakeLists.txt	2013-03-11 19:21:35.134446521 +1100
+@@ -6,7 +6,7 @@
+ 	set(json_platform_LIBS "")
+ endif( UNIX )
+ 
+-add_library(json ${json_SRCS})
++add_library(json STATIC ${json_SRCS})
+ 
+ target_link_libraries(
+ 	json

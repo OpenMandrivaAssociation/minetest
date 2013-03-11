@@ -1,7 +1,7 @@
-%define gameversion 0.4.4
+%define gameversion 0.4.5
 
 Name:		minetest
-Version:	0.4.4
+Version:	0.4.5
 Release:	1
 Summary:	An InfiniMiner/Minecraft inspired game
 Group:		Games/Other
@@ -11,7 +11,8 @@ URL:		http://celeron.55.lt/minetest/
 Source0:	%{name}-%{version}.tar.bz2
 Source1:	%{name}_game-%{gameversion}.tar.bz2
 # Needed to fix build against jthread 1.3.1
-Patch0:		minetest-0.4.4-jthread.patch
+Patch0:		minetest-0.4.5-jthread.patch
+Patch1:		minetest-0.4.5-json.patch
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -39,9 +40,12 @@ experience Minecraft.
 %prep
 %setup -q -a 1
 %patch0 -p1
+%patch1 -p1
 
 %build
-%cmake -DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread -DENABLE_GETTEXT:BOOL=ON
+%cmake \
+	-DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread \
+	-DENABLE_GETTEXT:BOOL=ON
 %make
 
 %install

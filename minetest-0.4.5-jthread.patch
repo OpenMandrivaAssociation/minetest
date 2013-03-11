@@ -1,0 +1,167 @@
+diff -urN minetest-0.4.5/src/ban.h minetest-0.4.5-patched/src/ban.h
+--- minetest-0.4.5/src/ban.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/ban.h	2013-03-11 18:25:28.948063493 +1100
+@@ -26,6 +26,8 @@
+ #include <jmutex.h>
+ #include "exceptions.h"
+ 
++using namespace jthread;
++
+ class BanManager
+ {
+ public:
+diff -urN minetest-0.4.5/src/debug.h minetest-0.4.5-patched/src/debug.h
+--- minetest-0.4.5/src/debug.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/debug.h	2013-03-11 18:25:28.948063493 +1100
+@@ -30,6 +30,8 @@
+ #include "gettime.h"
+ #include "exceptions.h"
+ 
++using namespace jthread;
++
+ #ifdef _WIN32
+ 	#define WIN32_LEAN_AND_MEAN
+ 	#ifndef _WIN32_WINNT
+diff -urN minetest-0.4.5/src/emerge.h minetest-0.4.5-patched/src/emerge.h
+--- minetest-0.4.5/src/emerge.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/emerge.h	2013-03-11 18:50:12.475656294 +1100
+@@ -11,6 +11,31 @@
+ 	{ if (enable_mapgen_debug_info) \
+ 	infostream << "EmergeThread: " x << std::endl; }
+ 
++/* ------ from local jthread ------ */
++#include <semaphore.h>
++
++class Event {
++sem_t sem;
++
++public:
++Event() {
++sem_init(&sem, 0, 0);
++}
++
++~Event() {
++sem_destroy(&sem);
++}
++
++void wait() {
++sem_wait(&sem);
++}
++
++void signal() {
++sem_post(&sem);
++}
++};
++/* ------ from local jthread ------ */
++
+ class Mapgen;
+ class MapgenParams;
+ class MapgenFactory;
+diff -urN minetest-0.4.5/src/main.cpp minetest-0.4.5-patched/src/main.cpp
+--- minetest-0.4.5/src/main.cpp	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/main.cpp	2013-03-11 18:25:28.948563494 +1100
+@@ -76,6 +76,8 @@
+ #include "quicktune.h"
+ #include "serverlist.h"
+ 
++using namespace jthread;
++
+ /*
+ 	Settings.
+ 	These are loaded from the config file.
+diff -urN minetest-0.4.5/src/profiler.h minetest-0.4.5-patched/src/profiler.h
+--- minetest-0.4.5/src/profiler.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/profiler.h	2013-03-11 18:25:28.949063495 +1100
+@@ -28,6 +28,8 @@
+ #include "util/timetaker.h"
+ #include "util/numeric.h" // paging()
+ 
++using namespace jthread;
++
+ /*
+ 	Time profiler
+ */
+diff -urN minetest-0.4.5/src/quicktune.cpp minetest-0.4.5-patched/src/quicktune.cpp
+--- minetest-0.4.5/src/quicktune.cpp	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/quicktune.cpp	2013-03-11 18:25:28.949063495 +1100
+@@ -22,6 +22,8 @@
+ #include <jmutexautolock.h>
+ #include "util/string.h"
+ 
++using namespace jthread;
++
+ std::string QuicktuneValue::getString()
+ {
+ 	switch(type){
+diff -urN minetest-0.4.5/src/server.cpp minetest-0.4.5-patched/src/server.cpp
+--- minetest-0.4.5/src/server.cpp	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/server.cpp	2013-03-11 18:26:14.537643453 +1100
+@@ -59,6 +59,8 @@
+ #include "rollback.h"
+ #include "util/serialize.h"
+ 
++using namespace jthread;
++
+ void * ServerThread::Thread()
+ {
+ 	ThreadStarted();
+diff -urN minetest-0.4.5/src/server.h minetest-0.4.5-patched/src/server.h
+--- minetest-0.4.5/src/server.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/server.h	2013-03-11 18:25:28.950563496 +1100
+@@ -41,6 +41,8 @@
+ 
+ #define PP(x) "("<<(x).X<<","<<(x).Y<<","<<(x).Z<<")"
+ 
++using namespace jthread;
++
+ struct LuaState;
+ typedef struct lua_State lua_State;
+ class IWritableItemDefManager;
+diff -urN minetest-0.4.5/src/settings.h minetest-0.4.5-patched/src/settings.h
+--- minetest-0.4.5/src/settings.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/settings.h	2013-03-11 18:25:28.951063498 +1100
+@@ -34,6 +34,8 @@
+ #include "util/string.h"
+ #include "porting.h"
+ 
++using namespace jthread;
++
+ enum ValueType
+ {
+ 	VALUETYPE_STRING,
+diff -urN minetest-0.4.5/src/tile.cpp minetest-0.4.5-patched/src/tile.cpp
+--- minetest-0.4.5/src/tile.cpp	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/tile.cpp	2013-03-11 18:25:28.951063498 +1100
+@@ -33,6 +33,8 @@
+ #include "util/thread.h"
+ #include "util/numeric.h"
+ 
++using namespace jthread;
++
+ /*
+ 	A cache from texture name to texture path
+ */
+diff -urN minetest-0.4.5/src/util/container.h minetest-0.4.5-patched/src/util/container.h
+--- minetest-0.4.5/src/util/container.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/util/container.h	2013-03-11 18:25:28.951563499 +1100
+@@ -25,6 +25,8 @@
+ #include <jmutexautolock.h>
+ #include "../porting.h" // For sleep_ms
+ 
++using namespace jthread;
++
+ /*
+ 	Queue with unique values with fast checking of value existence
+ */
+diff -urN minetest-0.4.5/src/util/thread.h minetest-0.4.5-patched/src/util/thread.h
+--- minetest-0.4.5/src/util/thread.h	2013-03-05 09:01:36.000000000 +1100
++++ minetest-0.4.5-patched/src/util/thread.h	2013-03-11 18:25:28.951563499 +1100
+@@ -25,6 +25,8 @@
+ #include <jmutex.h>
+ #include <jmutexautolock.h>
+ 
++using namespace jthread;
++
+ template<typename T>
+ class MutexedVariable
+ {
