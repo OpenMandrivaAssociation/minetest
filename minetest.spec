@@ -1,18 +1,19 @@
-%define gameversion 0.4.5
-
 Name:		minetest
-Version:	0.4.5
+Version:	0.4.6
 Release:	1
 Summary:	An InfiniMiner/Minecraft inspired game
 Group:		Games/Other
 License:	GPLv2+
 URL:		http://celeron.55.lt/minetest/
-# Get from github and re-pack to get rid of ugly directory names
-Source0:	%{name}-%{version}.tar.bz2
-Source1:	%{name}_game-%{gameversion}.tar.bz2
+Source0:	%{name}-%{version}.zip
+Source1:	common-%{version}.zip
+Source2:	%{name}_game-%{version}.zip
+Source3:	build-%{version}.zip
+Source4:	survival-%{version}.zip
 # Needed to fix build against jthread 1.3.1
-Patch0:		minetest-0.4.5-jthread.patch
-Patch1:		minetest-0.4.5-json.patch
+Patch0:		minetest-0.4.6-jthread.patch
+Patch1:		minetest-0.4.6-json.patch
+Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake >= 2.6.0
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -38,25 +39,41 @@ is quite fun already, especially for people who have not been able to
 experience Minecraft.
 
 %prep
-%setup -q -a 1
+%setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
+# With default LDFLAGS OpenGL is not properly detected for some reasons
+%global ldflags %{nil}
+
 %cmake \
 	-DJTHREAD_INCLUDE_DIR=%{_includedir}/jthread \
-	-DENABLE_GETTEXT:BOOL=ON
+	-DENABLE_GETTEXT:BOOL=ON \
+	-DCMAKE_CXX_FLAGS_RELEASE=  \
+	-DCMAKE_MODULE_LINKER_FLAGS=  
+
 %make
 
 %install
 %makeinstall_std -C build
 
-mkdir -p %{buildroot}%{_datadir}/%{name}/games/%{name}_game
-cp -r %{name}_game-%{gameversion}/* %{buildroot}%{_datadir}/%{name}/games/%{name}_game
+pushd %{buildroot}%{_datadir}/%{name}/games/
+unzip %{SOURCE1}
+unzip %{SOURCE2}
+unzip %{SOURCE3}
+unzip %{SOURCE4}
+mv common-%{version} common
+mv %{name}_game-%{version} %{name}_game
+mv build-%{version} build
+mv survival-%{version} survival
+popd
 
-%find_lang %{name}
+# Shows empty spaces with current font, must be re-checked in 0.4.7+
+rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
 
-%files -f %{name}.lang
+%files
 %doc doc/*.txt
 %{_bindir}/%{name}
 %{_bindir}/%{name}server
@@ -65,5 +82,4 @@ cp -r %{name}_game-%{gameversion}/* %{buildroot}%{_datadir}/%{name}/games/%{name
 %{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
-
 
