@@ -1,17 +1,17 @@
 Name:		minetest
-Version:	0.4.6
+Version:	0.4.7
 Release:	1
 Summary:	An InfiniMiner/Minecraft inspired game
 Group:		Games/Other
 License:	GPLv2+
 URL:		http://celeron.55.lt/minetest/
-Source0:	%{name}-%{version}.zip
-Source1:	common-%{version}.zip
-Source2:	%{name}_game-%{version}.zip
-Source3:	build-%{version}.zip
-Source4:	survival-%{version}.zip
+Source0:	%{name}-%{version}.tar.gz
+Source1:	%{name}_game-%{version}.tar.gz
+Source2:	common-0.4.6.zip
+Source3:	build-0.4.6.zip
+Source4:	survival-0.4.6.zip
 # Needed to fix build against jthread 1.3.1
-Patch0:		minetest-0.4.6-jthread.patch
+Patch0:		minetest-0.4.7-jthread.patch
 Patch1:		minetest-0.4.6-json.patch
 Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake >= 2.6.0
@@ -60,17 +60,17 @@ experience Minecraft.
 %makeinstall_std -C build
 
 pushd %{buildroot}%{_datadir}/%{name}/games/
-unzip %{SOURCE1}
+tar -xf %{SOURCE1}
 unzip %{SOURCE2}
 unzip %{SOURCE3}
 unzip %{SOURCE4}
-mv common-%{version} common
 mv %{name}_game-%{version} %{name}_game
-mv build-%{version} build
-mv survival-%{version} survival
+mv common-0.4.6 common
+mv build-0.4.6 build
+mv survival-0.4.6 survival
 popd
 
-# Shows empty spaces with current font, must be re-checked in 0.4.7+
+# Shows empty spaces with current font, must be re-checked in 0.4.8+
 rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
 
 %files
