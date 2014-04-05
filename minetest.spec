@@ -1,6 +1,6 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	0.4.8
+Version:	0.4.9
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
