@@ -1,15 +1,13 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	0.4.9
+Version:	0.4.10
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
-Url:		http://celeron.55.lt/minetest/
+Url:		http://minetest.net
+# From github by tag
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
-Source2:	common-0.4.6.zip
-Source3:	build-0.4.6.zip
-Source4:	survival-0.4.6.zip
 Patch1:		minetest-0.4.6-json.patch
 Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake
@@ -45,6 +43,7 @@ experience Minecraft.
 %{_bindir}/%{name}
 %{_bindir}/%{name}server
 %{_datadir}/%{name}
+%{_datadir}/appdata/minetest.appdata.xml
 %{_datadir}/applications/%{name}.desktop
 %{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
 %{_mandir}/man6/%{name}.6*
@@ -73,13 +72,7 @@ experience Minecraft.
 
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
-unzip %{SOURCE2}
-unzip %{SOURCE3}
-unzip %{SOURCE4}
 mv %{name}_game-%{version} %{name}_game
-mv common-0.4.6 common
-mv build-0.4.6 build
-mv survival-0.4.6 survival
 popd
 
 # Shows empty spaces with current font, must be re-checked in 0.4.8+

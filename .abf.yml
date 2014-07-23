@@ -1,6 +1,3 @@
 sources:
-  build-0.4.6.zip: ebe9b305125f5393bd5c00aae0610cb0978b6606
-  common-0.4.6.zip: 9c1a10d5814b9d77fef80d4dbc5919a1d2ca1b00
-  survival-0.4.6.zip: 7abb658a62c8fe5461a57af75eebd510580e333c
-  minetest-0.4.9.tar.gz: 1da58925ecda5b9636de84edaff46c20489a48c7
-  minetest_game-0.4.9.tar.gz: 10c65d30e569115ee22b4a3c7189e9ebeaa133d6
+  minetest-0.4.10.tar.gz: 06179ea793200236254105c5bc656c1e2e1fb1ef
+  minetest_game-0.4.10.tar.gz: e2e7eef41f16e8029cfedd922d3784d70809fa95

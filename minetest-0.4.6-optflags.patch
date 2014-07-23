@@ -1,11 +1,16 @@
-diff -urN minetest-0.4.6/src/CMakeLists.txt minetest-0.4.6-patched/src/CMakeLists.txt
---- minetest-0.4.6/src/CMakeLists.txt	2013-04-16 22:40:11.565477521 +1100
-+++ minetest-0.4.6-patched/src/CMakeLists.txt	2013-04-16 22:40:38.629525810 +1100
-@@ -481,9 +481,6 @@
- 		set(ARCH i386)
+diff -urN minetest-0.4.10/src/CMakeLists.txt minetest-0.4.10-patched/src/CMakeLists.txt
+--- minetest-0.4.10/src/CMakeLists.txt	2014-07-07 09:06:06.000000000 +1100
++++ minetest-0.4.10-patched/src/CMakeLists.txt	2014-07-24 02:06:34.944114784 +1100
+@@ -640,14 +640,6 @@
+ 		set(OTHER_FLAGS "-mthreads -fexceptions")
  	endif()
  
--	set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG ${RELEASE_WARNING_FLAGS} ${WARNING_FLAGS} ${OTHER_FLAGS} -O3 -ffast-math -Wall -fomit-frame-pointer -pipe -funroll-loops")
+-	set(CMAKE_CXX_FLAGS_RELEASE "-DNDEBUG ${RELEASE_WARNING_FLAGS} ${WARNING_FLAGS} ${OTHER_FLAGS} -ffast-math -Wall -pipe -funroll-loops")
+-	if(APPLE)
+-		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Os")
+-	else()
+-		set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -fomit-frame-pointer")
+-	endif(APPLE)
 -	set(CMAKE_CXX_FLAGS_DEBUG "-g -O1 -Wall ${WARNING_FLAGS} ${OTHER_FLAGS}")
 -
  	if(USE_GPROF)
