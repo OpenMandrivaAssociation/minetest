@@ -8,7 +8,7 @@ Url:		http://minetest.net
 # From github by tag
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
-Patch1:		minetest-0.4.6-json.patch
+#Patch1:		minetest-0.4.6-json.patch
 Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
