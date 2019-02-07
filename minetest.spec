@@ -8,8 +8,6 @@ Url:		http://minetest.net
 # From github by tag
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
-#Patch1:		minetest-0.4.6-json.patch
-#Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -40,12 +38,13 @@ experience Minecraft.
 
 %files
 %doc doc/*.txt
+%{_datadir}/doc/minetest/README.txt
 %{_bindir}/%{name}
 #{_bindir}/%{name}server
 %{_datadir}/%{name}
-#{_datadir}/appdata/minetest.appdata.xml
-#{_datadir}/applications/%{name}.desktop
-#{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
+%{_datadir}/metainfo/net.minetest.minetest.appdata.xml
+%{_datadir}/applications/net.minetest.minetest.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}*
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
 
@@ -53,8 +52,6 @@ experience Minecraft.
 
 %prep
 %setup -q
-#patch1 -p1
-#patch2 -p1
 
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
@@ -65,10 +62,10 @@ experience Minecraft.
 	-DCMAKE_CXX_FLAGS_RELEASE=  \
 	-DCMAKE_MODULE_LINKER_FLAGS=  
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
