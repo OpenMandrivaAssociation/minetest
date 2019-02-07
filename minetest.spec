@@ -1,15 +1,13 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	0.4.10
-Release:	2
+Version:	0.4.17.1
+Release:	1
 License:	GPLv2+
 Group:		Games/Other
 Url:		http://minetest.net
 # From github by tag
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
-Patch1:		minetest-0.4.6-json.patch
-Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -27,6 +25,7 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(jsoncpp)
 
 %description
 One of the first InfiniMiner/Minecraft(/whatever) inspired games (started
@@ -40,12 +39,14 @@ experience Minecraft.
 
 %files
 %doc doc/*.txt
+%{_datadir}/doc/minetest/README.txt
+%{_datadir}/doc/minetest/minetest.conf.example
 %{_bindir}/%{name}
-%{_bindir}/%{name}server
+#{_bindir}/%{name}server
 %{_datadir}/%{name}
-%{_datadir}/appdata/minetest.appdata.xml
-%{_datadir}/applications/%{name}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
+%{_datadir}/metainfo/net.minetest.minetest.appdata.xml
+%{_datadir}/applications/net.minetest.minetest.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}*
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
 
@@ -53,8 +54,8 @@ experience Minecraft.
 
 %prep
 %setup -q
-%patch1 -p1
-%patch2 -p1
+# Remove bundled lib. Use lib provide by system. (penguin)
+rm -vrf lib/jsoncpp
 
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
@@ -63,12 +64,13 @@ experience Minecraft.
 %cmake \
 	-DENABLE_GETTEXT:BOOL=ON \
 	-DCMAKE_CXX_FLAGS_RELEASE=  \
-	-DCMAKE_MODULE_LINKER_FLAGS=  
+	-DCMAKE_MODULE_LINKER_FLAGS=  \
+	-DENABLE_SYSTEM_JSONCPP:BOOL=ON
 
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
