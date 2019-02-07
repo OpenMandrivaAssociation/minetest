@@ -25,6 +25,7 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(jsoncpp)
 
 %description
 One of the first InfiniMiner/Minecraft(/whatever) inspired games (started
@@ -54,6 +55,8 @@ experience Minecraft.
 %prep
 %setup -q
 
+rm -vrf lib/jsoncpp
+
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
 %global ldflags %{nil}
@@ -61,7 +64,8 @@ experience Minecraft.
 %cmake \
 	-DENABLE_GETTEXT:BOOL=ON \
 	-DCMAKE_CXX_FLAGS_RELEASE=  \
-	-DCMAKE_MODULE_LINKER_FLAGS=  
+	-DCMAKE_MODULE_LINKER_FLAGS=  \
+	-DENABLE_SYSTEM_JSONCPP:BOOL=ON
 
 %make_build
 
