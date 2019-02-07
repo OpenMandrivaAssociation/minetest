@@ -54,7 +54,7 @@ experience Minecraft.
 
 %prep
 %setup -q
-
+# Remove bundled lib. Use lib provide by system. (penguin)
 rm -vrf lib/jsoncpp
 
 %build
