@@ -9,7 +9,7 @@ Url:		http://minetest.net
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
 #Patch1:		minetest-0.4.6-json.patch
-Patch2:		minetest-0.4.6-optflags.patch
+#Patch2:		minetest-0.4.6-optflags.patch
 BuildRequires:	cmake
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -54,7 +54,7 @@ experience Minecraft.
 %prep
 %setup -q
 #patch1 -p1
-%patch2 -p1
+#patch2 -p1
 
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
