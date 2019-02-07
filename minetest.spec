@@ -41,11 +41,11 @@ experience Minecraft.
 %files
 %doc doc/*.txt
 %{_bindir}/%{name}
-%{_bindir}/%{name}server
+#{_bindir}/%{name}server
 %{_datadir}/%{name}
-%{_datadir}/appdata/minetest.appdata.xml
-%{_datadir}/applications/%{name}.desktop
-%{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
+#{_datadir}/appdata/minetest.appdata.xml
+#{_datadir}/applications/%{name}.desktop
+#{_iconsdir}/hicolor/scalable/apps/%{name}-icon.svg
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
 
