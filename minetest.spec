@@ -39,6 +39,7 @@ experience Minecraft.
 %files
 %doc doc/*.txt
 %{_datadir}/doc/minetest/README.txt
+%{_datadir}/doc/minetest/minetest.conf.example
 %{_bindir}/%{name}
 #{_bindir}/%{name}server
 %{_datadir}/%{name}
