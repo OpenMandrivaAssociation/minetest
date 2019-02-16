@@ -1,7 +1,7 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
 Version:	0.4.17.1
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Other
 Url:		http://minetest.net
@@ -9,6 +9,7 @@ Url:		http://minetest.net
 Source0:	%{name}-%{version}.tar.gz
 Source1:	%{name}_game-%{version}.tar.gz
 BuildRequires:	cmake
+BuildRequires:	gmp-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	irrlicht-devel
@@ -55,7 +56,7 @@ experience Minecraft.
 %prep
 %setup -q
 # Remove bundled lib. Use lib provide by system. (penguin)
-rm -vrf lib/jsoncpp
+rm -vrf lib/jsoncpp lib/lua lib/gmp
 
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
@@ -65,6 +66,7 @@ rm -vrf lib/jsoncpp
 	-DENABLE_GETTEXT:BOOL=ON \
 	-DCMAKE_CXX_FLAGS_RELEASE=  \
 	-DCMAKE_MODULE_LINKER_FLAGS=  \
+	-DENABLE_SYSTEM_GMP:BOOL=ON \
 	-DENABLE_SYSTEM_JSONCPP:BOOL=ON
 
 %make_build
