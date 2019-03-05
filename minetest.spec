@@ -1,13 +1,13 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	0.4.17.1
-Release:	2
+Version:	5.0.0
+Release:	1
 License:	GPLv2+
 Group:		Games/Other
 Url:		http://minetest.net
 # From github by tag
-Source0:	%{name}-%{version}.tar.gz
-Source1:	%{name}_game-%{version}.tar.gz
+Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.gz
+Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}tar.gz
 BuildRequires:	cmake
 BuildRequires:	gmp-devel
 BuildRequires:	bzip2-devel
