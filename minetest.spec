@@ -7,7 +7,7 @@ Group:		Games/Other
 Url:		http://minetest.net
 # From github by tag
 Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.gz
-Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}tar.gz
+Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}.tar.gz
 BuildRequires:	cmake
 BuildRequires:	gmp-devel
 BuildRequires:	bzip2-devel
