@@ -14,6 +14,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
 BuildRequires:	irrlicht-devel
 BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(freetype2)add
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libcurl)
