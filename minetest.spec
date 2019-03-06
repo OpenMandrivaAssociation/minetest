@@ -62,6 +62,8 @@ rm -vrf lib/jsoncpp lib/lua lib/gmp
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
 %global ldflags %{nil}
+export CC=gcc
+export CXX=g++
 
 %cmake \
 	-DENABLE_GETTEXT:BOOL=ON \
