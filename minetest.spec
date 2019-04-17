@@ -1,6 +1,6 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.0.0
+Version:	5.0.1
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
@@ -62,8 +62,8 @@ rm -vrf lib/jsoncpp lib/lua lib/gmp
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
 %global ldflags %{nil}
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 
 %cmake \
 	-DENABLE_GETTEXT:BOOL=ON \
