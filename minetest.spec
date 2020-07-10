@@ -83,5 +83,5 @@ mv %{name}_game-%{version} %{name}_game
 popd
 
 # Shows empty spaces with current font, must be re-checked in 0.4.8+
-rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
+#rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
 
