@@ -1,6 +1,6 @@
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.2.0
+Version:	5.3.0
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
@@ -48,6 +48,7 @@ experience Minecraft.
 %{_datadir}/%{name}
 %{_datadir}/metainfo/net.minetest.minetest.appdata.xml
 %{_datadir}/applications/net.minetest.minetest.desktop
+%{_datadir}/locale/*/LC_MESSAGES/minetest.mo
 %{_iconsdir}/hicolor/*/apps/%{name}*
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
@@ -83,5 +84,5 @@ mv %{name}_game-%{version} %{name}_game
 popd
 
 # Shows empty spaces with current font, must be re-checked in 0.4.8+
-rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
+#rm %{buildroot}%{_datadir}/%{name}/locale/ru/LC_MESSAGES/minetest.mo
 
