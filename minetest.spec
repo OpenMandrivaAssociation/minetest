@@ -48,6 +48,7 @@ experience Minecraft.
 %{_datadir}/%{name}
 %{_datadir}/metainfo/net.minetest.minetest.appdata.xml
 %{_datadir}/applications/net.minetest.minetest.desktop
+%{_datadir}/locale/*/LC_MESSAGES/minetest.mo
 %{_iconsdir}/hicolor/*/apps/%{name}*
 %{_mandir}/man6/%{name}.6*
 %{_mandir}/man6/%{name}server.6*
