@@ -59,7 +59,7 @@ experience Minecraft.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
+%setup -q -a 1 -a 2
 # Remove bundled lib. Use lib provide by system. (penguin)
 rm -vrf lib/jsoncpp lib/lua lib/gmp
 
