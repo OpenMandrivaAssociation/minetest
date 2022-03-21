@@ -1,4 +1,4 @@
-%define irr_vers 1.9.0mt4
+%define irr_ver 1.9.0mt4
 
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
