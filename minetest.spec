@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libpng)
+BuildRequires:	pkgconfig(libzstd)
 BuildRequires:	pkgconfig(luajit)
 BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(sqlite3)
@@ -31,6 +32,12 @@ BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xxf86vm)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(jsoncpp)
+
+# for compiling irrlichtMT
+BuildRequires:  pkgconfig(xcursor)
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xft)
+BuildRequires:  pkgconfig(xxf86vm)
 
 %description
 One of the first InfiniMiner/Minecraft(/whatever) inspired games (started
