@@ -75,8 +75,10 @@ mv irrlicht-%{irr_ver} lib/irrlichtmt
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
 %global ldflags %{nil}
-#export CC=gcc
-#export CXX=g++
+%ifarch aarch64
+export CC=gcc
+export CXX=g++
+%endif
 
 %cmake \
 	-DENABLE_GETTEXT:BOOL=ON \
