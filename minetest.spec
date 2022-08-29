@@ -12,6 +12,7 @@ Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{versi
 Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}.tar.gz
 Source2:	https://github.com/minetest/irrlicht/archive/refs/tags/%{irr_ver}/irrlicht-%{irr_ver}.tar.gz
 BuildRequires:	cmake
+BuildRequires:	xinput
 BuildRequires:	gmp-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
