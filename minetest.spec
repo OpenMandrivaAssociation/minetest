@@ -38,6 +38,7 @@ BuildRequires:	pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xft)
+BuildRequires:	pkgconfig(xi)
 BuildRequires:  pkgconfig(xxf86vm)
 
 %description
