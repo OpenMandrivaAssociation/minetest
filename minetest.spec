@@ -1,8 +1,8 @@
-%define irr_ver 1.9.0mt5
+%define irr_ver 1.9.0mt7
 
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.5.1
+Version:	5.6.0
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
@@ -12,6 +12,7 @@ Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{versi
 Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}.tar.gz
 Source2:	https://github.com/minetest/irrlicht/archive/refs/tags/%{irr_ver}/irrlicht-%{irr_ver}.tar.gz
 BuildRequires:	cmake
+BuildRequires:	xinput
 BuildRequires:	gmp-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	gettext-devel
@@ -37,6 +38,7 @@ BuildRequires:	pkgconfig(jsoncpp)
 BuildRequires:  pkgconfig(xcursor)
 BuildRequires:  pkgconfig(xext)
 BuildRequires:  pkgconfig(xft)
+BuildRequires:	pkgconfig(xi)
 BuildRequires:  pkgconfig(xxf86vm)
 
 %description
