@@ -1,8 +1,8 @@
-%define irr_ver 1.9.0mt7
+%define irr_ver 1.9.0mt8
 
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.6.0
+Version:	5.6.1
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
