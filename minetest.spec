@@ -96,7 +96,7 @@ export CXX=g++
 
 %install
 %make_install -C build
-
+mkdir %{buildroot}%{_datadir}/%{name}/games/
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
 mv %{name}_game-%{version} %{name}_game
