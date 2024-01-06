@@ -1,4 +1,5 @@
 sources:
-  minetest-5.7.0.tar.gz: 2fb732e2de19d49a3c750a8d5aa7217aaac5763c
-  minetest_game-5.7.0.tar.gz: 970c3ecef8a9981ecdf6fe82e22db4daf64d351c
   irrlicht-1.9.0mt10.tar.gz: 6b9efb2126b1ebca87ea9841f57d5adad321557f
+  irrlicht-1.9.0mt13.tar.gz: 86d52f2ebeb331877caf656c954df96deeed5d21
+  minetest-5.8.0.tar.gz: 18038b2f81adab821e34b3c1298e1309cbe2475e
+  minetest_game-5.8.0.tar.gz: 60d3d895de2cb83fbe06b687f9041837b33fb0f9
