@@ -52,7 +52,7 @@ is quite fun already, especially for people who have not been able to
 experience Minecraft.
 
 %files
-%doc doc/*.txt
+%doc doc/*.txt doc/*.md
 %{_datadir}/doc/minetest/README.md
 %{_datadir}/doc/minetest/minetest.conf.example
 %{_bindir}/%{name}
