@@ -95,7 +95,7 @@ export CXX=g++
 mkdir %{buildroot}%{_datadir}/%{name}/games/
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
-mv %{name}_game-%{version} %{name}_game
+mv %{name}_game-5.8.0 %{name}_game
 popd
 
 # Shows empty spaces with current font, must be re-checked in 0.4.8+
