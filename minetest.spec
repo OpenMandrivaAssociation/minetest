@@ -55,7 +55,7 @@ experience Minecraft.
 %{_bindir}/%{name}
 #{_bindir}/%{name}server
 %{_datadir}/%{name}
-%{_datadir}/metainfo/net.minetest.minetest.appdata.xml
+%{_datadir}/metainfo/net.minetest.minetest.metainfo.xml
 %{_datadir}/applications/net.minetest.minetest.desktop
 %{_datadir}/locale/*/LC_MESSAGES/minetest.mo
 %{_iconsdir}/hicolor/*/apps/%{name}*
