@@ -1,16 +1,13 @@
-%define irr_ver 1.9.0mt13
-
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.8.0
+Version:	5.9.1
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
 Url:		http://minetest.net
 
 Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.gz
-Source1:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}_game-%{version}.tar.gz
-Source2:	https://github.com/minetest/irrlicht/archive/refs/tags/%{irr_ver}/irrlicht-%{irr_ver}.tar.gz
+Source1:	https://github.com/minetest/minetest_game/archive/5.8.0/%{name}_game-5.8.0.tar.gz
 BuildRequires:	cmake
 BuildRequires:	xinput
 BuildRequires:	gmp-devel
@@ -68,11 +65,10 @@ experience Minecraft.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -a 1 -a 2
+%setup -q -a 1
 # Remove bundled lib. Use lib provide by system. (penguin)
 rm -vrf lib/jsoncpp lib/lua lib/gmp
 
-mv irrlicht-%{irr_ver} lib/irrlichtmt
 
 %build
 # With default LDFLAGS OpenGL is not properly detected for some reasons
