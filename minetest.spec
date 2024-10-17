@@ -4,7 +4,7 @@ Version:	5.9.1
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
-Url:		http://minetest.net
+Url:		https://minetest.net
 
 Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	https://github.com/minetest/minetest_game/archive/5.8.0/%{name}_game-5.8.0.tar.gz
