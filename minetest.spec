@@ -1,13 +1,15 @@
+%define game_ver 5.8.0
+
 Summary:	An InfiniMiner/Minecraft inspired game
 Name:		minetest
-Version:	5.9.1
+Version:	5.10.0
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
 Url:		https://minetest.net
 
 Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.gz
-Source1:	https://github.com/minetest/minetest_game/archive/5.8.0/%{name}_game-5.8.0.tar.gz
+Source1:	https://github.com/minetest/minetest_game/archive/%{game_ver}/%{name}_game-%{game_ver}.tar.gz
 BuildRequires:	cmake
 BuildRequires:	xinput
 BuildRequires:	gmp-devel
@@ -95,7 +97,7 @@ export CXX=g++
 mkdir %{buildroot}%{_datadir}/%{name}/games/
 pushd %{buildroot}%{_datadir}/%{name}/games/
 tar -xf %{SOURCE1}
-mv %{name}_game-5.8.0 %{name}_game
+mv %{name}_game-%{game_ver} %{name}_game
 popd
 
 # Shows empty spaces with current font, must be re-checked in 0.4.8+
