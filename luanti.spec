@@ -6,7 +6,7 @@ License:	GPLv2+
 Group:		Games/Other
 Url:		https://luanti.org
 
-Source0:	https://github.com/minetest/minetest/archive/%{version}/%{name}-%{version}.tar.xz
+Source0:	https://github.com/minetest/minetest/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:	cmake
 BuildRequires:	xinput
@@ -41,6 +41,15 @@ BuildRequires:  pkgconfig(xxf86vm)
 # renamed from minetest
 Obsoletes: minetest < %{version}
 
+BuildSystem:	cmake
+BuildOption:	-DENABLE_GETTEXT=ON
+BuildOption:	-DENABLE_SYSTEM_GMP=ON
+BuildOption:	-DENABLE_SYSTEM_JSONCPP=ON
+BuildOption:	-DBUILD_SERVER=ON
+BuildOption:	-DBUILD_CLIENT=ON
+BuildOption:	-DENABLE_UPDATE_CHECKER=OFF
+BuildOption:	-DRUN_IN_PLACE=OFF
+
 %description
 One of the first InfiniMiner/Minecraft(/whatever) inspired games (started
 October 2010), with a goal of taking the survival multiplayer gameplay
@@ -63,16 +72,15 @@ differ from Minecraft except for having a lot less features. Still, playing
 is quite fun already, especially for people who have not been able to
 experience Minecraft.
 
-%files
+%files -f %{name}.lang
 %doc doc/*.txt doc/*.md
 %{_datadir}/doc/%{name}/README.md
-%{_datadir}/doc/%{name}/%{name}.conf.example
+%{_datadir}/doc/%{name}/minetest.conf.example
 %{_bindir}/%{name}
 %{_bindir}/minetest
 %{_datadir}/%{name}
-%{_datadir}/metainfo/net.%{name}.%{name}.metainfo.xml
-%{_datadir}/applications/net.%{name}.%{name}.desktop
-%{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
+%{_datadir}/metainfo/net.minetest.minetest.metainfo.xml
+%{_datadir}/applications/net.minetest.minetest.desktop
 %{_iconsdir}/hicolor/*/apps/%{name}*
 %{_mandir}/man6/%{name}.6*
 
@@ -84,22 +92,4 @@ experience Minecraft.
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup
-
-%build
-
-%cmake \
-	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DENABLE_GETTEXT=ON \
-	-DENABLE_SYSTEM_GMP=ON \
-	-DENABLE_SYSTEM_JSONCPP=ON \
-	-DBUILD_SERVER=ON \
-	-DBUILD_CLIENT=ON \
-	-DENABLE_UPDATE_CHECKER=OFF \
-	-DRUN_IN_PLACE=OFF
-
-%make_build
-
-%install
-%make_install -C build
-
+%autosetup -p1 -n minetest-%{version}
