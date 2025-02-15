@@ -1,12 +1,12 @@
 Summary:	An InfiniMiner/Minecraft inspired game
-Name:		luanti
-Version:	5.10.0
+Name:		minetest_game
+Version:	5.8.0
 Release:	1
 License:	GPLv2+
 Group:		Games/Other
 Url:		https://luanti.org
 
-Source0:	https://github.com/minetest/minetest/archive/refs/tags/%{version}.tar.gz
+Source0:	https://github.com/minetest/minetest_game/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:	cmake
 BuildRequires:	xinput
@@ -92,4 +92,4 @@ experience Minecraft.
 #----------------------------------------------------------------------------
 
 %prep
-%autosetup -p1 -n minetest-%{version}
+%autosetup -p1 -n minetest_game-%{version}
