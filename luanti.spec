@@ -14,6 +14,7 @@ Url:		https://luanti.org
 Source0:	https://github.com/luanti-org/minetest_game/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildArch:      noarch
+# Let is pull game engine
 Requires:  luanti
 # renamed from minetest
 Obsoletes: minetest < %{version}
